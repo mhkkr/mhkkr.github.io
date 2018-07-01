@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="format-detection" content="telephone=no">
+  <title>parent-elements-box-shadow-inset-in-child-elements-background</title>
+
+<style>
+  .parent {
+    -webkit-box-shadow: inset 0 0 10px red;
+            box-shadow: inset 0 0 10px red;
+    display: flex;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 300px;
+  }
+  .child {
+    -webkit-flex: 0 1 auto;
+        -ms-flex: 0 1 auto;
+            flex: 0 1 auto;
+    padding: 20px;
+  }
+  .child--bg {
+    background-color: #f0f0f0;
+  }
+  .child--pseudo-bg {
+    position: relative;
+  }
+  .child--pseudo-bg:after {
+    background-color: yellow;
+    content: "";
+    pointer-events: none;
+    position: absolute; left: 0; top: 0; right: 0; bottom: 0;
+    z-index: -1; /* この指定がないと、今度は背景色が文字の上にくる */
+  }
+</style>
+
+  <style>
+    .mhkkr-sample-container {
+      display: flex;
+      margin: -10px;
+    }
+    .mhkkr-sample-container > * {
+      -webkit-flex: 0 1 auto;
+          -ms-flex: 0 1 auto;
+              flex: 0 1 auto;
+      margin: 10px;
+    }
+    .mhkkr-sample-code {
+      background-color: #000;
+    }
+    .mhkkr-sample-code pre {
+      margin: 1em;
+    }
+  </style>
+</head>
+
+  <h1>親要素の box-shadow が inset のとき、子要素の background が上にならないようにする方法</h1>
+  <p>確認済み：IE11, Edge, Firefox, Chrome</p>
+  <div class="mhkkr-sample-container">
+    <div class="mhkkr-sample-canvas">
+      <div class="parent">
+        <div class="child">特に指定なし</div>
+        <div class="child  child--bg">子要素にそのまま背景色を指定すると影の上になるが</div>
+        <div class="child  child--pseudo-bg">疑似要素に背景色を任せると解決する</div>
+      </div>
+    </div>
+    <div class="mhkkr-sample-code" id="mhkkr-sample-code">
+    </div>
+  </div>
+
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+  <script>
+    ;(function() {
+      const $code = document.getElementById('mhkkr-sample-code')
+      const $target = document.querySelectorAll('style')[0]
+      $code.innerHTML = '<pre><code class="prettyprint  lang-css">' + $target.outerHTML.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</code></pre>'
+    })()
+  </script>
+
+<body>
