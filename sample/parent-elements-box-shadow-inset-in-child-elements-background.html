@@ -34,7 +34,7 @@
     content: "";
     pointer-events: none;
     position: absolute; left: 0; top: 0; right: 0; bottom: 0;
-    z-index: -1; /* この指定がないと、今度は背景色が文字の上にくる */
+    z-index: -1; /* この指定がないと、今度は背景色が文字の上にくる */
   }
 </style>
 
@@ -59,8 +59,8 @@
 </head>
 <body>
 
-  <h1>親要素の box-shadow が inset のとき、子要素の background が上にならないようにする方法</h1>
-  <p>確認済み：IE11, Edge, Firefox, Chrome</p>
+  <h1 class="iframe-none">親要素の box-shadow が inset のとき、子要素の background が上にならないようにする方法</h1>
+  <p class="iframe-none">確認済み：IE11, Edge, Firefox, Chrome</p>
   <div class="mhkkr-sample-container">
     <div class="mhkkr-sample-canvas">
       <div class="parent">
@@ -79,6 +79,22 @@
       const $code = document.getElementById('mhkkr-sample-code')
       const $target = document.querySelectorAll('style')[0]
       $code.innerHTML = '<pre><code class="prettyprint  lang-css">' + $target.outerHTML.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</code></pre>'
+    })()
+  </script>
+
+  <script>
+    ;(function() {
+      const url = new URL(location.href)
+      if (url.search.indexOf('referer=iframe') != -1) {
+        var $iframeNone = document.querySelectorAll('.iframe-none')
+        for (var i = 0; i < $iframeNone.length; i++) {
+          $iframeNone[i].style.display = 'none'
+        }
+        document.documentElement.style.margin = 0
+        document.documentElement.style.padding = 0
+        document.body.style.margin = 0
+        document.body.style.padding = 0
+      }
     })()
   </script>
 
