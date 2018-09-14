@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="format-detection" content="telephone=no">
+  <title>Jquery plugin fitSidebar headerfixed top margin</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    .mhkkr-sample-container {
+      display: flex;
+      margin: -10px;
+    }
+    .mhkkr-sample-container > * {
+      -webkit-flex: 0 1 auto;
+          -ms-flex: 0 1 auto;
+              flex: 0 1 auto;
+      margin: 10px;
+    }
+    .mhkkr-sample-code {
+      background-color: #000;
+    }
+    .mhkkr-sample-code pre {
+      margin: 1em;
+    }
+  </style>
+
+  <style>
+    .header {
+      background-color: lightblue;
+      padding: 15px;
+      position: sticky; left: 0; top: 0;
+      width: 600px;
+      z-index: 9;
+    }
+    .wrapper {
+      display: flex;
+      background-color: #f0f0f0;
+      width: 600px;
+    }
+    .sidebar {
+      background-color: pink;
+      -webkit-flex: 0 0 auto;
+          -ms-flex: 0 0 auto;
+              flex: 0 0 auto;
+      padding: 15px;
+      width: 150px;
+    }
+    .main {
+      background-color: lightgreen;
+      -webkit-flex: 1 1 auto;
+          -ms-flex: 1 1 auto;
+              flex: 1 1 auto;
+      padding: 15px;
+    }
+    .yohaku {
+      background-color: #f0f0f0;
+      padding: 15px;
+      width: 600px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="iframe-none">jQueryプラグイン「fitSidebar」とヘッダー固定時に余白を入れる方法</h1>
+  <p>確認済み：IE11, Edge, Firefox, Chrome</p>
+  <p>プラグインのダウンロードは公式サイトより！<a href="http://www.cyokodog.net/jquery.sitekit/fit-sidebar/demo.html">http://www.cyokodog.net/jquery.sitekit/fit-sidebar/demo.html</a></p>
+  <div class="mhkkr-sample-container">
+    <div class="mhkkr-sample-canvas">
+      <div id="header" class="header">
+        ヘッダー
+      </div>
+      <div id="wrapper" class="wrapper">
+        <div class="sidebar">
+          <div id="side" class="sidebar-element">
+            <div class="sidebar-element-inner">
+              サイドバー始まり<br>
+              <br><br>
+              <br><br>
+              <br><br>
+              <br><br>
+              <br><br>
+              <br><br>
+              <br><br>
+              <br><br>
+              <br><br>
+              <br><br>
+              <br><br>
+              <br><br>
+              <br><br>
+              <br><br>
+              <br><br>
+              <br>
+              サイドバー終わり
+            </div>
+          </div>
+        </div>
+        <div class="main">
+          メインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメイン<br>
+          <br>
+          メインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメイン<br>
+          <br>
+          メインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメイン<br>
+          <br>
+          メインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメイン<br>
+          <br>
+          メインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメイン<br>
+          <br>
+          メインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメイン<br>
+          <br>
+          メインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメイン<br>
+          <br>
+          メインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメイン<br>
+          <br>
+          メインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメイン<br>
+          <br>
+          メインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメイン<br>
+          <br>
+          メインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメイン<br>
+          <br>
+          メインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメイン<br>
+          <br>
+          メインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメイン<br>
+          <br>
+          メインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメイン<br>
+          <br>
+          メインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメイン<br>
+          <br>
+          メインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメイン<br>
+          <br>
+          メインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメイン<br>
+          <br>
+          メインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメイン<br>
+          <br>
+          メインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメイン<br>
+          <br>
+          メインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメイン<br>
+          <br>
+          メインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメイン<br>
+          <br>
+          メインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメインメイン
+        </div>
+      </div>
+      <div class="yohaku">
+        余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白<br>
+        <br>
+        余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白<br>
+        <br>
+        余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白余白
+      </div>
+    </div>
+    <div class="mhkkr-sample-code" id="mhkkr-sample-code">
+      <pre><code class="prettyprint  lang-js">
+// カスタマイズ箇所を抜粋
+
+var adjustUp = function(){
+  var top = c.lastDownFixedTop + (c.lastDownScrollTop - scrollTop)
+
+  // 原案
+  // if(top > 0){
+  //   top = offset.top-scrollTop;
+  //   if(top < 0) top = 0;
+  // }
+
+  // ヘッダー固定対応案
+  var header_height = $('#header').outerHeight() + 15 // 任意のpx
+  if(top > header_height){
+    top = header_height;
+    if ((scrollTop + header_height) < c.wrapper.offset().top) {
+      top = offset.top-scrollTop;
+      if(top < 0) top = 0;
+    }
+  }
+
+  c.target.css({
+    top : top,
+    bottom : 'auto'
+  });
+  c.lastUpFixedTop = top;
+  c.lastUpScrollTop = scrollTop;
+}
+      </code></pre>
+    </div>
+  </div>
+
+  <style>
+    /* fit-sidebar */
+    .fit-sidebar-fixed{
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+      position: fixed;
+    }
+    .fit-sidebar-blank{
+      z-index: 0;
+      background-color: transparent;
+      visibility: hidden;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    /*
+     *  fitSidebar 0.1 - jQuery plugin
+     *  written by cyokodog
+     *
+     *  Copyright (c) 2014 cyokodog 
+     *    http://www.cyokodog.net/
+     *    http://d.hatena.ne.jp/cyokodog/)
+     *    http://cyokodog.tumblr.com/
+     *  MIT LICENCE
+     *
+     *  Built for jQuery library
+     *  http://jquery.com
+     *
+     */
+    ;(function($){
+      var s = $.fitSidebar = function(target, option){
+        var o = this, c = o.config = $.extend({}, s.defaults, option);
+        c.target = $(target).addClass('fit-sidebar');
+        c.blank = $('<div/>').addClass(s.id + '-blank').insertBefore(c.target);
+        c.blank.css('border','solid 1px #fff');
+        c.blank.css({
+          'margin-top' : c.target.css('margin-top'),
+          'margin-right' : c.target.css('margin-right'),
+          'margin-bottom' : c.target.css('margin-bottom'),
+          'margin-left' : c.target.css('margin-left'),
+          'border-top-width' : c.target.css('border-top-width'),
+          'border-right-width' : c.target.css('border-right-width'),
+          'border-bottom-width' : c.target.css('border-bottom-width'),
+          'border-left-width' : c.target.css('border-left-width'),
+          'padding-top' : c.target.css('padding-top'),
+          'padding-right' : c.target.css('padding-right'),
+          'padding-bottom' : c.target.css('padding-bottom'),
+          'padding-left' : c.target.css('padding-left')
+        });
+        c.wrapper = $(c.target).parents(c.wrapper);
+        c._win = $(window)
+          .on('scroll', function(){
+            o.adjustPosition();
+          })
+          .on('resize', function(){
+            c.target.hasClass('for-chrome-bug');
+            o.adjustPosition();
+          });
+        setTimeout(function(){
+          o.adjustPosition();
+        },0);
+      }
+      $.extend($.fitSidebar.prototype, {
+        adjustPosition : function(){
+          var o = this, c = o.config;
+          if(c._win.width() < c.responsiveWidth){
+            c.wrapper.removeClass(c.fixedClassName);
+            c.wrapper.addClass(c.noFixedClassName);
+            c.target.removeClass(s.id + '-fixed');
+            c.blank.hide();
+            c.target.width('auto');
+            c.direction = null;
+            return;
+          }
+          c.wrapper.addClass(c.fixedClassName);
+          c.wrapper.removeClass(c.noFixedClassName);
+          c.target.addClass(s.id + '-fixed');
+          var offset = c.blank.show().offset();
+          var scrollTop = c._win.scrollTop()
+          var outerHeight = c.target.outerHeight();
+          var overHeight = outerHeight - c._win.height();
+          if(overHeight < 0) overHeight = 0;
+          if(!c.direction){
+            c.lastFixedTop = c.lastDownFixedTop = c.lastUpFixedTop = offset.top - scrollTop;
+            c.lastScrollTop = c.lastDownScrollTop = c.lastUpScrollTop = scrollTop;
+          }
+          c.target.width(c.blank.width());
+          c.blank.height(c.target.height());
+          c.direction = scrollTop < c.lastScrollTop ? 'up' : 'down';
+          var adjustDown = function(){
+            var top = c.lastUpFixedTop + (c.lastUpScrollTop - scrollTop)
+            if(top < 0){
+              if(top + overHeight < 0){
+                top = -overHeight;
+                var limit = c.wrapper.offset().top + c.wrapper.height();
+                var pos = scrollTop + outerHeight + top;
+                if(pos > limit){
+                  top = (limit - scrollTop) - outerHeight;
+                }
+              }
+            }
+            c.target.css({
+              top : top,
+              bottom : 'auto'
+            });
+            c.lastDownFixedTop = top;
+            c.lastDownScrollTop = scrollTop;
+          }
+          var adjustUp = function(){
+            var top = c.lastDownFixedTop + (c.lastDownScrollTop - scrollTop)
+
+            // 原案
+            // if(top > 0){
+            //   top = offset.top-scrollTop;
+            //   if(top < 0) top = 0;
+            // }
+
+            // ヘッダー固定対応案
+            var header_height = $('#header').outerHeight() + 15 // 任意のpx
+            if(top > header_height){
+              top = header_height;
+              if ((scrollTop + header_height) < c.wrapper.offset().top) {
+                top = offset.top-scrollTop;
+                if(top < 0) top = 0;
+              }
+            }
+
+            c.target.css({
+              top : top,
+              bottom : 'auto'
+            });
+            c.lastUpFixedTop = top;
+            c.lastUpScrollTop = scrollTop;
+          }
+          if(c.direction == 'down'){
+            adjustDown();
+          }
+          else{
+            adjustUp();
+          }
+          c.lastFixedTop = top;
+          c.lastScrollTop = scrollTop;
+        }
+      });
+      $.fn.fitSidebar = function(option){
+        return this.each(function(){
+          var el = $(this);
+          el.data(s.id, new $.fitSidebar(el, option));
+        });
+      }
+      $.extend(s, {
+        defaults : {
+          wrapper : 'body', // 各カラムを包括する親又は先祖要素
+          responsiveWidth : 0,  // レスポンシブのブレークポイント
+          fixedClassName : 'fit-sidebar-fixed-now', // 固定時に wrapperパラメータ指定要素に割り当てられるクラス名
+          noFixedClassName : 'fit-sidebar-no-fixed-now' // 非固定時に wrapperパラメータ指定要素に割り当てられるクラス名
+        },
+        id : 'fit-sidebar'
+      });
+    })(jQuery);
+  </script>
+  <script>
+    const list = [
+      [$('#side'), $('#wrapper')],
+    ]
+    window.addEventListener('load', function() {
+      for (let i = 0, len = list.length; i < len; i++) {
+        list[i][0].fitSidebar({
+          wrapper : list[i][1],
+        })
+      }
+    }, false)
+  </script>
+
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+
+  <script>
+    ;(function() {
+      const url = new URL(location.href)
+      if (url.search.indexOf('referer=iframe') != -1) {
+        var $iframeNone = document.querySelectorAll('.iframe-none')
+        for (var i = 0; i < $iframeNone.length; i++) {
+          $iframeNone[i].style.display = 'none'
+        }
+        document.documentElement.style.margin = 0
+        document.documentElement.style.padding = 0
+        document.body.style.margin = 0
+        document.body.style.padding = 0
+      }
+    })()
+  </script>
+
+</body>
+</html>
