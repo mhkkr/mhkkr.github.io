@@ -171,7 +171,7 @@ var adjustUp = function(){
   var header_height = $('#header').outerHeight() + 15 // 任意のpx
   if(top > header_height){
     top = header_height;
-    if ((scrollTop + header_height) < c.wrapper.offset().top) {
+    if((scrollTop + header_height) < c.wrapper.offset().top){
       top = offset.top-scrollTop;
       if(top < 0) top = 0;
     }
@@ -309,7 +309,7 @@ var adjustUp = function(){
             var header_height = $('#header').outerHeight() + 15 // 任意のpx
             if(top > header_height){
               top = header_height;
-              if ((scrollTop + header_height) < c.wrapper.offset().top) {
+              if((scrollTop + header_height) < c.wrapper.offset().top){
                 top = offset.top-scrollTop;
                 if(top < 0) top = 0;
               }
