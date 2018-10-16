@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>メモ帳</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP" rel="stylesheet"> 
+  <style>
+    * {
+      font: inherit;
+      margin: 0;
+      padding: 0;
+    }
+    html,
+    body {
+      height: 100%;
+      overflow: hidden;
+    }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+    #textarea {
+      background-color: #2e2e2e;
+      border: none;
+      color: #d6d6d6;
+      height: 100%;
+      line-height: 1.5;
+      padding: 1em;
+      width: 100%;
+    }
+    #alert {
+      background-color: #999;
+      border-radius: 8px;
+      box-shadow: 1px 2px 2px 0 rgba(0,0,0,.2);
+      color: #fff;
+      font-weight: 700;
+      padding: 1em;
+      position: absolute; right: 1em; top: 1em;
+      transition: .3s;
+    }
+    #alert.is-success {
+      background-color: #258f13;
+    }
+    #alert.is-failed {
+      background-color: #8f1313;
+    }
+    #alert:not(.is-show) {
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    const saveDelay = 1000
+    let   saveTimer = false
+
+    const alertDelay = 3000
+    let   alertTimer = false
+
+    let   diffValue = ''
+
+    const $textarea = document.createElement('textarea')
+    const $alert = document.createElement('div')
+    $textarea.id = 'textarea'
+    $alert.id = 'alert'
+    document.body.insertAdjacentElement('afterbegin', $textarea)
+    document.body.insertAdjacentElement('afterbegin', $alert)
+
+    if (localStorage.getItem('chace')) {
+      $textarea.value = localStorage.getItem('chace')
+      diffValue = $textarea.value
+    }
+
+    $textarea.addEventListener('keyup', function() {
+      const value = this.value
+      isHiddenAlert()
+
+      if (saveTimer !== false) {
+        clearTimeout(saveTimer)
+      }
+      saveTimer = setTimeout(function () {
+        if (diffValue !== value) {
+          diffValue = value
+          localStorage.setItem('chace', value)
+          if (localStorage.getItem('chace') === value) {
+            isShowAlert('is-success', '保存しました。')
+            isHiddenAlertTimerContainer()
+          } else {
+            isShowAlert('is-failed', '失敗しました。')
+            isHiddenAlertTimerContainer()
+          }
+        }
+      }, saveDelay)
+    }, false)
+
+    const isShowAlert = function (addClass, messegeBody) {
+      $alert.innerText = messegeBody
+      $alert.classList.add('is-show', addClass)
+    }
+
+    const isHiddenAlert = function () {
+      $alert.className = ''
+    }
+
+    const isHiddenAlertTimerContainer = function () {
+      if (alertTimer !== false) {
+        clearTimeout(alertTimer)
+      }
+      alertTimer = setTimeout(function () {
+        isHiddenAlert()
+      }, alertDelay)
+    }
+  </script>
+</body>
+</html>
