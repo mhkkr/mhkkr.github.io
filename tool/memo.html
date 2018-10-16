@@ -96,7 +96,8 @@
 
     const isShowAlert = function (addClass, messegeBody) {
       $alert.innerText = messegeBody
-      $alert.classList.add('is-show', addClass)
+      $alert.classList.add('is-show')
+      $alert.classList.add(addClass)
     }
 
     const isHiddenAlert = function () {
